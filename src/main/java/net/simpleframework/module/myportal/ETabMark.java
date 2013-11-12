@@ -12,7 +12,7 @@ public enum ETabMark {
 	normal,
 
 	/**
-	 * 自己的home标签
+	 * 自己的 home标签
 	 */
 	home
 }

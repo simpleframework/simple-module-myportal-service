@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-script>
+  <version>1.0.0</version>
+  <name>script</name>
+  <description></description>
+  <tran-sql>
+    <![CDATA[
+      create table sf_my_portal_tabs (
+        id char(32) not null,
+        tabtext varchar2(32 char) not null,
+        userid char(32) not null,
+        createdate timestamp not null,
+        tabmark number(4) not null,
+        views number(11) not null,
+        description varchar2(256 char),
+        primary key(id),
+        unique(userid, tabtext)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_my_portal_layout (
+        id char(32) not null,
+       	layoutlob clob,
+        primary key(id)
+      );
+    ]]>
+  </tran-sql>
+</sql-script>

@@ -1,9 +1,11 @@
 package net.simpleframework.module.myportal.impl;
 
 import static net.simpleframework.common.I18n.$m;
-import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.ado.IADOManagerFactory;
+import net.simpleframework.ado.db.DbManagerFactory;
+import net.simpleframework.ctx.AbstractADOModuleContext;
+import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.Module;
-import net.simpleframework.ctx.service.ado.db.AbstractDbModuleContext;
 import net.simpleframework.module.myportal.ILayoutLobService;
 import net.simpleframework.module.myportal.IMyPortalContext;
 import net.simpleframework.module.myportal.IPortalTabService;
@@ -16,11 +18,16 @@ import net.simpleframework.module.myportal.PortalTabBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class MyPortalContext extends AbstractDbModuleContext implements IMyPortalContext {
+public abstract class MyPortalContext extends AbstractADOModuleContext implements IMyPortalContext {
 
 	@Override
-	protected DbEntityTable[] getEntityTables() {
-		return new DbEntityTable[] { PortalTabBean.TBL, LayoutLobBean.TBL };
+	public void onInit(final IApplicationContext application) throws Exception {
+		super.onInit(application);
+
+		final IADOManagerFactory aFactory = getADOManagerFactory();
+		if (aFactory instanceof DbManagerFactory) {
+			((DbManagerFactory) aFactory).regist(PortalTabBean.TBL, LayoutLobBean.TBL);
+		}
 	}
 
 	@Override

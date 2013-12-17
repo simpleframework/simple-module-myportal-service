@@ -1,6 +1,6 @@
 package net.simpleframework.module.myportal;
 
-import net.simpleframework.ctx.IADOModuleContext;
+import net.simpleframework.ctx.IModuleContext;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -8,7 +8,7 @@ import net.simpleframework.ctx.IADOModuleContext;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public interface IMyPortalContext extends IADOModuleContext {
+public interface IMyPortalContext extends IModuleContext {
 
 	static final String MODULE_NAME = "simple-module-myportal";
 

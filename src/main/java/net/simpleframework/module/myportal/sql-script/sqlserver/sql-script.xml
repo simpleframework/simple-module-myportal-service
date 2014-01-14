@@ -10,7 +10,7 @@
         tabtext varchar(32) not null,
         userid char(32) not null,
         createdate datetime not null,
-        tabmark smallint not null,
+        tabmark tinyint not null,
         views int not null,
         description varchar(256),
         primary key(id),

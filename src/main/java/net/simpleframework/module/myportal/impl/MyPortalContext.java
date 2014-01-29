@@ -21,7 +21,8 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 		IDbEntityTableRegistry {
 	@Override
 	public DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] { PortalTabBean.TBL, LayoutLobBean.TBL };
+		return new DbEntityTable[] { new DbEntityTable(PortalTabBean.class, "sf_my_portal_tabs"),
+				new DbEntityTable(LayoutLobBean.class, "sf_my_portal_layout").setNoCache(true) };
 	}
 
 	@Override

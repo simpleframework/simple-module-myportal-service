@@ -1,7 +1,6 @@
 package net.simpleframework.module.myportal;
 
 import net.simpleframework.ado.bean.AbstractUserAwareBean;
-import net.simpleframework.ado.db.DbEntityTable;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -49,9 +48,6 @@ public class PortalTabBean extends AbstractUserAwareBean {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(PortalTabBean.class,
-			"sf_my_portal_tabs");
 
 	private static final long serialVersionUID = 8142966150870802569L;
 }

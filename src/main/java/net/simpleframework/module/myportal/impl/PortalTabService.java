@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.Date;
 
 import net.simpleframework.ado.IParamsValue;
-import net.simpleframework.ado.db.IDbDataQuery;
 import net.simpleframework.ado.db.IDbEntityManager;
+import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ClassUtils;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.myportal.ETabMark;
@@ -53,7 +53,7 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 	public Collection<PortalTabBean> queryTabs(final ID accountId) {
 		final ArrayList<PortalTabBean> al = new ArrayList<PortalTabBean>();
 		if (accountId != null) {
-			final IDbDataQuery<PortalTabBean> qs = query("userId=? order by tabmark desc", accountId);
+			final IDataQuery<PortalTabBean> qs = query("userId=? order by tabmark desc", accountId);
 			boolean homeTab = false;
 			PortalTabBean tab;
 			while ((tab = qs.next()) != null) {

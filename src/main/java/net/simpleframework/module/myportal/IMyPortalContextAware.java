@@ -11,5 +11,5 @@ import net.simpleframework.ctx.ModuleContextFactory;
  */
 public interface IMyPortalContextAware extends IModuleContextAware {
 
-	static IMyPortalContext context = ModuleContextFactory.get(IMyPortalContext.class);
+	static IMyPortalContext myPortalContext = ModuleContextFactory.get(IMyPortalContext.class);
 }

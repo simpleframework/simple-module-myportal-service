@@ -15,10 +15,10 @@ public abstract class AbstractPortalService<T extends Serializable> extends
 		AbstractDbBeanService<T> implements IMyPortalContextAware {
 
 	protected PortalTabService getPortalTabService() {
-		return (PortalTabService) context.getPortalTabService();
+		return (PortalTabService) myPortalContext.getPortalTabService();
 	}
 
 	protected LayoutLobService getMyPortalService() {
-		return (LayoutLobService) context.getMyPortalService();
+		return (LayoutLobService) myPortalContext.getMyPortalService();
 	}
 }

@@ -72,6 +72,8 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
+
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onAfterDelete(final IDbEntityManager<?> service, final IParamsValue paramsValue) {

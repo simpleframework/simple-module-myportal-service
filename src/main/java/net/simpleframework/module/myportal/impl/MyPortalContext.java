@@ -6,10 +6,10 @@ import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.AbstractADOModuleContext;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.myportal.ILayoutLobService;
-import net.simpleframework.module.myportal.ILayoutTabService;
 import net.simpleframework.module.myportal.IMyPortalContext;
+import net.simpleframework.module.myportal.ITabService;
 import net.simpleframework.module.myportal.LayoutLobBean;
-import net.simpleframework.module.myportal.LayoutTabBean;
+import net.simpleframework.module.myportal.TabBean;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -21,7 +21,7 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 		IDbEntityTableRegistry {
 	@Override
 	public DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] { new DbEntityTable(LayoutTabBean.class, "sf_my_portal_tabs"),
+		return new DbEntityTable[] { new DbEntityTable(TabBean.class, "sf_my_portal_tabs"),
 				new DbEntityTable(LayoutLobBean.class, "sf_my_portal_layout").setNoCache(true) };
 	}
 
@@ -31,7 +31,7 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 	}
 
 	@Override
-	public ILayoutTabService getLayoutTabService() {
+	public ITabService getTabService() {
 		return singleton(PortalTabService.class);
 	}
 

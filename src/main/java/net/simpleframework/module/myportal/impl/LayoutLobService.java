@@ -9,7 +9,7 @@ import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.myportal.ILayoutLobService;
 import net.simpleframework.module.myportal.IMyPortalContextAware;
 import net.simpleframework.module.myportal.LayoutLobBean;
-import net.simpleframework.module.myportal.LayoutTabBean;
+import net.simpleframework.module.myportal.TabBean;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -21,7 +21,7 @@ public class LayoutLobService extends AbstractDbBeanService<LayoutLobBean> imple
 		ILayoutLobService, IMyPortalContextAware {
 
 	@Override
-	public LayoutLobBean getLayoutLob(final LayoutTabBean tab) {
+	public LayoutLobBean getLayoutLob(final TabBean tab) {
 		LayoutLobBean lob = getBean(tab.getId());
 		if (lob == null) {
 			lob = new LayoutLobBean();

@@ -11,7 +11,7 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public interface ILayoutTabService extends IDbBeanService<LayoutTabBean> {
+public interface ITabService extends IDbBeanService<TabBean> {
 
 	/**
 	 * 获取指定用户缺省的门户页面
@@ -20,7 +20,7 @@ public interface ILayoutTabService extends IDbBeanService<LayoutTabBean> {
 	 * @param accountId
 	 * @return
 	 */
-	LayoutTabBean homeTab(ID accountId);
+	TabBean homeTab(ID accountId);
 
 	/**
 	 * 获取我的门户标签列表
@@ -28,5 +28,5 @@ public interface ILayoutTabService extends IDbBeanService<LayoutTabBean> {
 	 * @param rRequest
 	 * @return
 	 */
-	Collection<LayoutTabBean> queryTabs(ID accountId);
+	Collection<TabBean> queryTabs(ID accountId);
 }

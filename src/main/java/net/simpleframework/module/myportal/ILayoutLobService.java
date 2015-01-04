@@ -10,5 +10,11 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  */
 public interface ILayoutLobService extends IDbBeanService<LayoutLobBean> {
 
+	/**
+	 * 获取布局xml内容
+	 * 
+	 * @param tab
+	 * @return
+	 */
 	LayoutLobBean getLayoutLob(PortalTabBean tab);
 }

@@ -36,7 +36,7 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 	}
 
 	@Override
-	public ILayoutLobService getMyPortalService() {
+	public ILayoutLobService getLayoutLobService() {
 		return singleton(LayoutLobService.class);
 	}
 }

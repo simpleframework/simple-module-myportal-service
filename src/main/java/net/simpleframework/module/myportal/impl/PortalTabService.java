@@ -2,9 +2,6 @@ package net.simpleframework.module.myportal.impl;
 
 import static net.simpleframework.common.I18n.$m;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -12,11 +9,9 @@ import java.util.Date;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.common.ClassUtils;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.myportal.ETabMark;
 import net.simpleframework.module.myportal.IPortalTabService;
-import net.simpleframework.module.myportal.LayoutLobBean;
 import net.simpleframework.module.myportal.PortalTabBean;
 
 /**
@@ -79,7 +74,7 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 			public void onAfterDelete(final IDbEntityManager<?> service, final IParamsValue paramsValue) {
 				super.onAfterDelete(service, paramsValue);
 				for (final PortalTabBean tab : coll(paramsValue)) {
-					getMyPortalService().delete(tab.getId());
+					getLayoutLobService().delete(tab.getId());
 				}
 			}
 
@@ -87,16 +82,7 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 			public void onAfterInsert(final IDbEntityManager<?> service, final Object[] beans) {
 				super.onAfterInsert(service, beans);
 				for (final Object bean : beans) {
-					final PortalTabBean tab = (PortalTabBean) bean;
-					final LayoutLobBean lob = new LayoutLobBean();
-					lob.setId(tab.getId());
-					try {
-						final InputStream is = ClassUtils.getResourceRecursively(PortalTabService.class,
-								"template_" + tab.getTabMark().name() + ".xml");
-						lob.setLayoutLob(new InputStreamReader(is, "utf-8"));
-					} catch (final UnsupportedEncodingException e) {
-					}
-					getMyPortalService().insert(lob);
+					getLayoutLobService().getLayoutLob((PortalTabBean) bean);
 				}
 			}
 		});

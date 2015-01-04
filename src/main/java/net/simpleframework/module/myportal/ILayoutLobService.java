@@ -9,4 +9,6 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  *         http://www.simpleframework.net
  */
 public interface ILayoutLobService extends IDbBeanService<LayoutLobBean> {
+
+	LayoutLobBean getLayoutLob(PortalTabBean tab);
 }

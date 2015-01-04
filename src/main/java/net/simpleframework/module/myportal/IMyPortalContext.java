@@ -24,5 +24,5 @@ public interface IMyPortalContext extends IModuleContext {
 	 * 
 	 * @return
 	 */
-	ILayoutLobService getMyPortalService();
+	ILayoutLobService getLayoutLobService();
 }

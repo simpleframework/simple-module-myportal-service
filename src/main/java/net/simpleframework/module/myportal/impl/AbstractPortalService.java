@@ -18,7 +18,7 @@ public abstract class AbstractPortalService<T extends Serializable> extends
 		return (PortalTabService) myPortalContext.getPortalTabService();
 	}
 
-	protected LayoutLobService getMyPortalService() {
-		return (LayoutLobService) myPortalContext.getMyPortalService();
+	protected LayoutLobService getLayoutLobService() {
+		return (LayoutLobService) myPortalContext.getLayoutLobService();
 	}
 }

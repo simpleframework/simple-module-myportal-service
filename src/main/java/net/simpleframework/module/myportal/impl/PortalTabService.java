@@ -10,9 +10,12 @@ import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.myportal.ETabMark;
-import net.simpleframework.module.myportal.IPortalTabService;
-import net.simpleframework.module.myportal.PortalTabBean;
+import net.simpleframework.module.myportal.ILayoutLobService;
+import net.simpleframework.module.myportal.ILayoutTabService;
+import net.simpleframework.module.myportal.IMyPortalContextAware;
+import net.simpleframework.module.myportal.LayoutTabBean;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -20,11 +23,11 @@ import net.simpleframework.module.myportal.PortalTabBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class PortalTabService extends AbstractPortalService<PortalTabBean> implements
-		IPortalTabService {
+public class PortalTabService extends AbstractDbBeanService<LayoutTabBean> implements
+		ILayoutTabService, IMyPortalContextAware {
 
-	private PortalTabBean createHomeTab(final ID accountId) {
-		final PortalTabBean tab = createBean();
+	private LayoutTabBean createHomeTab(final ID accountId) {
+		final LayoutTabBean tab = createBean();
 		tab.setUserId(accountId);
 		tab.setCreateDate(new Date());
 		tab.setTabMark(ETabMark.home);
@@ -33,11 +36,11 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 	}
 
 	@Override
-	public PortalTabBean homeTab(final ID accountId) {
+	public LayoutTabBean homeTab(final ID accountId) {
 		if (accountId == null) {
 			return null;
 		}
-		PortalTabBean tab = getBean("userid=? and tabmark=?", accountId, ETabMark.home);
+		LayoutTabBean tab = getBean("userid=? and tabmark=?", accountId, ETabMark.home);
 		if (tab == null) {
 			insert(tab = createHomeTab(accountId));
 		}
@@ -45,12 +48,12 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 	}
 
 	@Override
-	public Collection<PortalTabBean> queryTabs(final ID accountId) {
-		final ArrayList<PortalTabBean> al = new ArrayList<PortalTabBean>();
+	public Collection<LayoutTabBean> queryTabs(final ID accountId) {
+		final ArrayList<LayoutTabBean> al = new ArrayList<LayoutTabBean>();
 		if (accountId != null) {
-			final IDataQuery<PortalTabBean> qs = query("userId=? order by tabmark desc", accountId);
+			final IDataQuery<LayoutTabBean> qs = query("userId=? order by tabmark desc", accountId);
 			boolean homeTab = false;
-			PortalTabBean tab;
+			LayoutTabBean tab;
 			while ((tab = qs.next()) != null) {
 				al.add(tab);
 				if (tab.getTabMark() == ETabMark.home) {
@@ -69,12 +72,13 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 	public void onInit() throws Exception {
 		super.onInit();
 
+		final ILayoutLobService lobService = myPortalContext.getLayoutLobService();
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onAfterDelete(final IDbEntityManager<?> service, final IParamsValue paramsValue) {
 				super.onAfterDelete(service, paramsValue);
-				for (final PortalTabBean tab : coll(paramsValue)) {
-					getLayoutLobService().delete(tab.getId());
+				for (final LayoutTabBean tab : coll(paramsValue)) {
+					lobService.delete(tab.getId());
 				}
 			}
 
@@ -82,7 +86,7 @@ public class PortalTabService extends AbstractPortalService<PortalTabBean> imple
 			public void onAfterInsert(final IDbEntityManager<?> service, final Object[] beans) {
 				super.onAfterInsert(service, beans);
 				for (final Object bean : beans) {
-					getLayoutLobService().getLayoutLob((PortalTabBean) bean);
+					lobService.getLayoutLob((LayoutTabBean) bean);
 				}
 			}
 		});

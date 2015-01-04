@@ -5,9 +5,11 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 import net.simpleframework.common.ClassUtils;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.myportal.ILayoutLobService;
+import net.simpleframework.module.myportal.IMyPortalContextAware;
 import net.simpleframework.module.myportal.LayoutLobBean;
-import net.simpleframework.module.myportal.PortalTabBean;
+import net.simpleframework.module.myportal.LayoutTabBean;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -15,11 +17,11 @@ import net.simpleframework.module.myportal.PortalTabBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class LayoutLobService extends AbstractPortalService<LayoutLobBean> implements
-		ILayoutLobService {
+public class LayoutLobService extends AbstractDbBeanService<LayoutLobBean> implements
+		ILayoutLobService, IMyPortalContextAware {
 
 	@Override
-	public LayoutLobBean getLayoutLob(final PortalTabBean tab) {
+	public LayoutLobBean getLayoutLob(final LayoutTabBean tab) {
 		LayoutLobBean lob = getBean(tab.getId());
 		if (lob == null) {
 			lob = new LayoutLobBean();

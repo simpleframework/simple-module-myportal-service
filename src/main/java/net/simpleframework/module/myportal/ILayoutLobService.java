@@ -16,5 +16,5 @@ public interface ILayoutLobService extends IDbBeanService<LayoutLobBean> {
 	 * @param tab
 	 * @return
 	 */
-	LayoutLobBean getLayoutLob(PortalTabBean tab);
+	LayoutLobBean getLayoutLob(LayoutTabBean tab);
 }

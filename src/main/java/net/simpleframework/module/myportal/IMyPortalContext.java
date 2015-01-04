@@ -17,7 +17,7 @@ public interface IMyPortalContext extends IModuleContext {
 	 * 
 	 * @return
 	 */
-	IPortalTabService getPortalTabService();
+	ILayoutTabService getLayoutTabService();
 
 	/**
 	 * 获取门户布局管理器

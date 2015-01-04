@@ -8,7 +8,7 @@ import net.simpleframework.ado.bean.AbstractUserAwareBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class PortalTabBean extends AbstractUserAwareBean {
+public class LayoutTabBean extends AbstractUserAwareBean {
 	private String tabText;
 
 	private ETabMark tabMark;

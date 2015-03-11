@@ -5,7 +5,7 @@ import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.AbstractADOModuleContext;
 import net.simpleframework.ctx.Module;
-import net.simpleframework.ctx.permission.IPermissionConst;
+import net.simpleframework.ctx.permission.PermissionConst;
 import net.simpleframework.module.myportal.ILayoutLobService;
 import net.simpleframework.module.myportal.IMyPortalContext;
 import net.simpleframework.module.myportal.ITabService;
@@ -28,7 +28,7 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 
 	@Override
 	protected Module createModule() {
-		return new Module().setManagerRole(IPermissionConst.ROLE_ALL_ACCOUNT).setName(MODULE_NAME)
+		return new Module().setManagerRole(PermissionConst.ROLE_ALL_ACCOUNT).setName(MODULE_NAME)
 				.setText($m("MyPortalContext.0")).setOrder(37);
 	}
 

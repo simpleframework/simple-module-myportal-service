@@ -73,22 +73,22 @@ public class PortalTabService extends AbstractDbBeanService<TabBean> implements 
 		super.onInit();
 
 		final ILayoutLobService lobService = myPortalContext.getLayoutLobService();
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<TabBean>() {
 			@Override
-			public void onAfterDelete(final IDbEntityManager<?> service, final IParamsValue paramsValue)
-					throws Exception {
-				super.onAfterDelete(service, paramsValue);
-				for (final TabBean tab : coll(paramsValue)) {
+			public void onAfterDelete(final IDbEntityManager<TabBean> manager,
+					final IParamsValue paramsValue) throws Exception {
+				super.onAfterDelete(manager, paramsValue);
+				for (final TabBean tab : coll(manager, paramsValue)) {
 					lobService.delete(tab.getId());
 				}
 			}
 
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> service, final Object[] beans)
+			public void onAfterInsert(final IDbEntityManager<TabBean> service, final TabBean[] beans)
 					throws Exception {
 				super.onAfterInsert(service, beans);
-				for (final Object bean : beans) {
-					lobService.getLayoutLob((TabBean) bean);
+				for (final TabBean bean : beans) {
+					lobService.getLayoutLob(bean);
 				}
 			}
 		});

@@ -2,7 +2,6 @@ package net.simpleframework.module.myportal.impl;
 
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.db.DbEntityTable;
-import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.AbstractADOModuleContext;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.ctx.permission.PermissionConst;
@@ -18,10 +17,10 @@ import net.simpleframework.module.myportal.TabBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class MyPortalContext extends AbstractADOModuleContext implements IMyPortalContext,
-		IDbEntityTableRegistry {
+public abstract class MyPortalContext extends AbstractADOModuleContext implements IMyPortalContext {
+
 	@Override
-	public DbEntityTable[] createEntityTables() {
+	protected DbEntityTable[] createEntityTables() {
 		return new DbEntityTable[] { new DbEntityTable(TabBean.class, "sf_my_portal_tabs"),
 				new DbEntityTable(LayoutLobBean.class, "sf_my_portal_layout").setNoCache(true) };
 	}

@@ -27,8 +27,8 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 
 	@Override
 	protected Module createModule() {
-		return new Module().setManagerRole(PermissionConst.ROLE_ALL_ACCOUNT).setName(MODULE_NAME)
-				.setText($m("MyPortalContext.0")).setOrder(37);
+		return super.createModule().setManagerRole(PermissionConst.ROLE_ALL_ACCOUNT)
+				.setName(MODULE_NAME).setText($m("MyPortalContext.0")).setOrder(37);
 	}
 
 	@Override

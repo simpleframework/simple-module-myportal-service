@@ -1,6 +1,7 @@
 package net.simpleframework.module.myportal.impl;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ctx.AbstractADOModuleContext;
 import net.simpleframework.ctx.Module;
@@ -27,8 +28,8 @@ public abstract class MyPortalContext extends AbstractADOModuleContext implement
 
 	@Override
 	protected Module createModule() {
-		return new Module().setManagerRole(PermissionConst.ROLE_ALL_ACCOUNT).setName(MODULE_NAME)
-				.setText($m("MyPortalContext.0")).setOrder(37);
+		return super.createModule().setManagerRole(PermissionConst.ROLE_ALL_ACCOUNT)
+				.setName(MODULE_NAME).setText($m("MyPortalContext.0")).setOrder(37);
 	}
 
 	@Override

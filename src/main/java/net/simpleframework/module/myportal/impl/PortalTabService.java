@@ -23,8 +23,8 @@ import net.simpleframework.module.myportal.TabBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class PortalTabService extends AbstractDbBeanService<TabBean> implements ITabService,
-		IMyPortalContextAware {
+public class PortalTabService extends AbstractDbBeanService<TabBean>
+		implements ITabService, IMyPortalContextAware {
 
 	private TabBean createHomeTab(final ID accountId) {
 		final TabBean tab = createBean();

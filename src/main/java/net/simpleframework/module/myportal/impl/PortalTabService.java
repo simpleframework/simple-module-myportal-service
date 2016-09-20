@@ -49,7 +49,7 @@ public class PortalTabService extends AbstractDbBeanService<TabBean>
 
 	@Override
 	public Collection<TabBean> queryTabs(final ID accountId) {
-		final ArrayList<TabBean> al = new ArrayList<TabBean>();
+		final ArrayList<TabBean> al = new ArrayList<>();
 		if (accountId != null) {
 			final IDataQuery<TabBean> qs = query("userId=? order by tabmark desc", accountId);
 			boolean homeTab = false;
